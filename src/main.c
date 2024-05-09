@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 // Функция для проверки високосного года
 int isLeapYear(int year) {
@@ -34,21 +35,20 @@ int daysSince1970(int day, int month, int year) {
   return totalDays;
 }
 
-int main() {
-  int day;
-  int month;
-  int year;
+int main(int argc, char *argv[]) {
+  if (argc != 4) {
+    printf("Ошибка! Необходимо передать три аргумента командной строки (день, "
+           "месяц, год).\n");
+    return 1;
+  }
 
-  printf("Введите день: ");
-  scanf("%d", &day);
-  printf("Введите месяц: ");
-  scanf("%d", &month);
-  printf("Введите год: ");
-  scanf("%d", &year);
+  int day = atoi(argv[1]);
+  int month = atoi(argv[2]);
+  int year = atoi(argv[3]);
 
   int days = daysSince1970(day, month, year);
 
-  printf("Количество дней с 1 января 1970 года до %d/%d/%d: %d\n", day, month,
+  printf("Количество дней с 1 января 1970 года до %i/%i/%i: %i\n", day, month,
          year, days);
 
   return 0;
